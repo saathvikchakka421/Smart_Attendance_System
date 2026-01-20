@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <p>Demo accounts (password: <b>Password@123</b>)</p>
+    <ul>
+      <li>admin@demo.com</li>
+      <li>faculty@demo.com</li>
+      <li>student1@demo.com</li>
+    </ul>
+
+    <form method="post">
+      <input name="email" placeholder="email" required>
+      <input name="password" type="password" placeholder="password" required>
+      <button class="btn" type="submit">Login</button>
+    </form>
+  </div>
+</body>
+</html>

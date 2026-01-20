@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h3>Courses</h3>
+  <ul>
+    {% for c in courses %}
+      <li>
+        <b>{{ c.code }}</b> - {{ c.title }}
+        {% if user.role in ['admin','faculty'] %}
+          | <a href="{{ url_for('mark', course_id=c.id) }}">Mark</a>
+        {% endif %}
+        | <a href="{{ url_for('report', course_id=c.id) }}">Report</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

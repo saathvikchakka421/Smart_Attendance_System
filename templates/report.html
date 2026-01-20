@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h3>Report - {{ course.code }} ({{ course.title }})</h3>
+
+  {% if mode == "student" %}
+    <table>
+      <tr><th>Date</th><th>Status</th></tr>
+      {% for r in rows %}
+        <tr><td>{{ r.class_date }}</td><td>{{ r.status }}</td></tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <table>
+      <tr><th>Student</th><th>Present</th><th>Total</th><th>Attendance %</th></tr>
+      {% for r in rows %}
+        <tr>
+          <td>{{ r.name }}</td>
+          <td>{{ r.present_count or 0 }}</td>
+          <td>{{ r.total_classes or 0 }}</td>
+          <td>
+            {% set total = (r.total_classes or 0) %}
+            {% set pres = (r.present_count or 0) %}
+            {% if total == 0 %}0{% else %}{{ ((pres/total)*100) | round(1) }}{% endif %}%
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+{% endblock %}
